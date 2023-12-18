@@ -1,14 +1,14 @@
-// src/components/TaskList.jsx
+// TaskList.jsx
 import React from 'react';
 import TaskItem from './TaskItem';
 
-const TaskList = ({ tasks, onDelete }) => {
+const TaskList = ({ tasks, removeTask }) => {
   return (
-    <div>
+    <ul>
       {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} onDelete={onDelete} />
+        <TaskItem key={task.id} task={task} removeTask={removeTask} />
       ))}
-    </div>
+    </ul>
   );
 };
 

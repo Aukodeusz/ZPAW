@@ -1,41 +1,42 @@
-// src/App.jsx
+// App.jsx
 import React, { useState } from 'react';
-import TaskList from './components/TaskList';
+import TaskList from './TaskList';
 
 const App = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, text: 'Przykładowe zadanie 1', createdAt: new Date() },
-    { id: 2, text: 'Przykładowe zadanie 2', createdAt: new Date() },
-    { id: 3, text: 'Przykładowe zadanie 3', createdAt: new Date() },
+    { id: 1, text: 'Zadanie 1', date: new Date().toLocaleString() },
+    { id: 2, text: 'Zadanie 2', date: new Date().toLocaleString() },
+    { id: 3, text: 'Zadanie 3', date: new Date().toLocaleString() },
   ]);
-  const [newTaskText, setNewTaskText] = useState('');
 
-  const handleDelete = (taskId) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
-  };
-
-  const handleAddTask = () => {
+  const addTask = (text) => {
     const newTask = {
       id: tasks.length + 1,
-      text: newTaskText,
-      createdAt: new Date(),
+      text,
+      date: new Date().toLocaleString(),
     };
-
     setTasks([...tasks, newTask]);
-    setNewTaskText('');
+  };
+
+  const removeTask = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
   };
 
   return (
     <div>
       <h1>Lista Zadań</h1>
+      <TaskList tasks={tasks} removeTask={removeTask} />
       <input
         type="text"
-        value={newTaskText}
-        onChange={(e) => setNewTaskText(e.target.value)}
+        placeholder="Dodaj nowe zadanie"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            addTask(e.target.value);
+            e.target.value = '';
+          }
+        }}
       />
-      <button onClick={handleAddTask}>Dodaj Zadanie</button>
-      <TaskList tasks={tasks} onDelete={handleDelete} />
     </div>
   );
 };
