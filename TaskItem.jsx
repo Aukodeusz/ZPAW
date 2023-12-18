@@ -1,17 +1,16 @@
 // src/components/TaskItem.jsx
 import React from 'react';
+import { format } from 'date-fns';
 
-const TaskItem = ({ task, onRemoveTask }) => {
-  const handleRemove = () => {
-    onRemoveTask(task.id);
-  };
+const TaskItem = ({ task, onDelete }) => {
+  const formattedDate = format(new Date(task.createdAt), 'yyyy-MM-dd HH:mm:ss');
 
   return (
-    <li>
-      <div>{task.text}</div>
-      <div>Utworzono: {task.createdAt.toLocaleString()}</div>
-      <button onClick={handleRemove}>Usuń</button>
-    </li>
+    <div>
+      <span>{task.text}</span>
+      <span style={{ marginLeft: '10px' }}>({formattedDate})</span>
+      <button onClick={() => onDelete(task.id)}>Usuń</button>
+    </div>
   );
 };
 
