@@ -1,4 +1,4 @@
-// TaskItem.jsx
+
 import React from 'react';
 
 const TaskItem = ({ task, onTaskClick, removeTask }) => {
@@ -8,7 +8,7 @@ const TaskItem = ({ task, onTaskClick, removeTask }) => {
       <span>{task.date}</span>
       <button onClick={() => removeTask(task.id)}>Usuń</button>
     </li>
-  );
+  )
 };
 
 export default TaskItem;

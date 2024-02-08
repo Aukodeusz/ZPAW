@@ -1,6 +1,7 @@
-// App.jsx
+
 import React, { useState } from 'react';
 import TaskList from './TaskList';
+
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -11,14 +12,14 @@ const App = () => {
 
   const handleTaskClick = (clickedTask) => {
     console.log('Kliknięto zadanie:', clickedTask);
-    // Obsługa kliknięcia w zadanie (przekazanie danych z dziecka do rodzica)
+    
   };
 
   const handleRemoveTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
     console.log('Usunięto zadanie o ID:', taskId);
-    // Obsługa usuwania zadania (przekazanie danych z dziecka do rodzica)
+    
   };
 
   return (
